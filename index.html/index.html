@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valentine Spesial 💖</title>
+  <title>Valentine Special 💖</title>
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {margin:0; padding:0; box-sizing:border-box;}
@@ -18,84 +18,77 @@
       align-items:center;
       text-align:center;
       padding: 20px;
+      position: relative;
+      transition: background 1s ease;
     }
+
     h1 {
       font-family:'Parisienne', cursive;
-      font-size:4em;
-      margin-bottom:0.5em;
-      animation: fadeIn 2s ease forwards;
+      font-size: 4em;
+      margin-bottom: 0.5em;
+      animation: fadeIn 1.5s ease forwards;
     }
+
     p {
-      font-size:1.2em;
-      line-height:1.8em;
-      margin-bottom:2em;
+      font-size: 1.2em;
+      line-height: 1.8em;
+      margin-bottom: 2em;
       white-space: pre-line;
-      animation: fadeIn 3s ease forwards;
       max-width: 700px;
       margin-left:auto;
       margin-right:auto;
+      animation: fadeIn 2s ease forwards;
     }
+
     .btn {
-      display:inline-block;
-      padding:0.8em 2em;
-      background:#ff6f91;
-      color:#fff;
-      font-weight:bold;
-      border-radius:50px;
-      text-decoration:none;
-      transition:0.3s;
-      animation: fadeIn 4s ease forwards;
+      display: inline-block;
+      padding: 0.8em 2em;
+      background: #ff6f91;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 50px;
+      text-decoration: none;
+      margin: 5px;
+      transition: 0.3s;
+      cursor: pointer;
     }
+
     .btn:hover {
-      background:#ff3c6f;
-      transform:scale(1.1);
+      background: #ff3c6f;
+      transform: scale(1.1);
     }
 
     /* Hearts floating */
     .heart {
-      position:absolute;
+      position: absolute;
       width: 30px;
       height: 30px;
       background: red;
       transform: rotate(-45deg);
-      opacity:0.7;
+      opacity: 0.7;
       animation: float 6s infinite linear;
     }
     .heart::before,
     .heart::after {
       content:"";
-      position:absolute;
-      width:30px;
-      height:30px;
-      background:red;
-      border-radius:50%;
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      border-radius: 50%;
     }
     .heart::before {top:-15px; left:0;}
     .heart::after {top:0; left:15px;}
 
     @keyframes fadeIn {
-      0% {opacity:0; transform:translateY(-20px);}
-      100% {opacity:1; transform:translateY(0);}
-    }
-    @keyframes float {
-      0% {transform:translateX(0) translateY(0) rotate(-45deg);}
-      50% {transform:translateX(50px) translateY(-250px) rotate(-45deg);}
-      100% {transform:translateX(-50px) translateY(-500px) rotate(-45deg);}
+      0% {opacity: 0; transform: translateY(-20px);}
+      100% {opacity: 1; transform: translateY(0);}
     }
 
-    /* Confetti */
-    .confetti {
-      position:absolute;
-      width:10px;
-      height:10px;
-      background: #fff;
-      top: -10px;
-      opacity:0.8;
-      animation: confettiFall linear infinite;
-    }
-    @keyframes confettiFall {
-      0% {transform: translateY(0) rotate(0deg);}
-      100% {transform: translateY(100vh) rotate(360deg);}
+    @keyframes float {
+      0% {transform: translateX(0) translateY(0) rotate(-45deg);}
+      50% {transform: translateX(50px) translateY(-250px) rotate(-45deg);}
+      100% {transform: translateX(-50px) translateY(-500px) rotate(-45deg);}
     }
   </style>
 </head>
@@ -117,7 +110,11 @@ Ade itu berharga, ade itu istimewa, dan abang bersyukur bisa milikin ade sayangg
 
 Abang sayang ade hari ini, besok, seterusnya dan selamanya
     </p>
-    <a href="#" class="btn">❤️ Aku Cinta Kamu ❤️</a>
+
+    <!-- Tombol interaktif -->
+    <button class="btn" onclick="alert('Abang sayang Adee! ❤️')">Klik Aku ❤️</button>
+    <button class="btn" onclick="gantiBackground()">Ganti Warna Background 🌈</button>
+    <button class="btn" onclick="document.querySelector('p').innerHTML += '\n\nAku selalu mikirin kamu 😊'">Abang minta maaf yyaa ade, ke egoisan abang ngebuat hubungan kita berantakan, abang mohonn, abang gamau kehilangan adee :( abang minta maaf sayang ✨</button>
   </div>
 
   <!-- Hearts -->
@@ -127,25 +124,19 @@ Abang sayang ade hari ini, besok, seterusnya dan selamanya
   <div class="heart" style="left:70%; animation-duration:7s;"></div>
   <div class="heart" style="left:90%; animation-duration:5.5s;"></div>
 
-  <!-- Confetti & Musik -->
   <script>
-    for(let i=0;i<50;i++){
-      let confetti=document.createElement('div');
-      confetti.className='confetti';
-      confetti.style.left=Math.random()*100+'%';
-      confetti.style.background=['#fff','#ff6f91','#ffb3c1','#ffe6f0'][Math.floor(Math.random()*4)];
-      confetti.style.animationDuration=(2+Math.random()*3)+'s';
-      confetti.style.width=(5+Math.random()*10)+'px';
-      confetti.style.height=(5+Math.random()*10)+'px';
-      document.body.appendChild(confetti);
-    }
+    const gradients = [
+      'linear-gradient(to bottom right, #fbc2eb, #a6c1ee)',
+      'linear-gradient(to bottom right, #ffecd2, #fcb69f)',
+      'linear-gradient(to bottom right, #cfd9df, #e2ebf0)',
+      'linear-gradient(to bottom right, #ff9a9e, #fecfef)',
+      'linear-gradient(to bottom right, #a1c4fd, #c2e9fb)'
+    ];
 
-    let audio = document.createElement('audio');
-    audio.src='https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
-    audio.autoplay = true;
-    audio.loop = true;
-    audio.volume = 0.2;
-    document.body.appendChild(audio);
+    function gantiBackground() {
+      const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
+      document.body.style.background = randomGradient;
+    }
   </script>
 </body>
 </html>

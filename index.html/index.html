@@ -32,12 +32,11 @@ body{
   box-shadow:0 20px 40px rgba(0,0,0,.2);
 }
 
-#loginBox{animation:fadeIn .8s ease}
 #content{display:none}
 
 input{
   padding:12px 16px;border-radius:25px;border:none;outline:none;
-  font-size:16px;text-align:center;width:220px;
+  font-size:16px;text-align:center;width:240px;
 }
 button{
   margin:10px;padding:12px 26px;border-radius:30px;border:none;
@@ -47,7 +46,7 @@ button{
 button:hover{transform:scale(1.08)}
 
 #errorMsg{
-  color:#ffdde1;margin-top:10px;
+  color:#ffd1dc;margin-top:10px;
   animation:shake .4s;
 }
 @keyframes shake{
@@ -77,7 +76,7 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
 
 #overlay{
   position:fixed;inset:0;
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.65);
   display:none;justify-content:center;align-items:center;
   z-index:10;
 }
@@ -91,8 +90,8 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
 }
 
 .heart{
-  position:fixed;font-size:22px;
-  animation:fall 5s linear forwards;
+  position:fixed;
+  animation:fall linear forwards;
   pointer-events:none;
 }
 @keyframes fall{
@@ -103,13 +102,12 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
 #hug{
   position:fixed;
   font-size:90px;
-  opacity:0;
-  animation:hugAnim 2.2s ease forwards;
+  animation:hugAnim 2.3s ease forwards;
   pointer-events:none;
 }
 @keyframes hugAnim{
   0%{transform:scale(.5);opacity:0}
-  40%{transform:scale(1.1);opacity:1}
+  40%{transform:scale(1.15);opacity:1}
   70%{transform:scale(1);opacity:1}
   100%{transform:scale(.8);opacity:0}
 }
@@ -125,8 +123,8 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
 <div class="container heartbeat">
 
 <div id="loginBox">
-  <h1>Masuk dulu ya Adee ❤️</h1>
-  <input type="password" id="passwordInput" placeholder="Ade Kecilku">
+  <h1>Masuk dulu yyaa adee ❤️</h1>
+  <input type="password" id="passwordInput" placeholder="Adeku Tersayang">
   <br>
   <button onclick="checkPassword()">Masuk 💌</button>
   <p id="errorMsg"></p>
@@ -182,7 +180,7 @@ dan selamanya.
 const sorryText=`
 Ade sayang,
 
-abang minta maaf yaa…
+abang minta maaf yaa,
 hari-hari ade jadi jelek terus karena abang,
 dan karena keegoisan abang pula kita jadi renggang kaya sekarang.
 
@@ -190,18 +188,18 @@ Abang minta maaf atas segala hal
 yang udah abang perbuat ke ade.
 
 Abang cuma mau ade tau satu hal,
-bahwa abang selalu mencintai ade,
+bahwa abang selalu mencintai ade
 kapanpun dan dimanapun.
 
-Maafin abang ya adee…
+Maafin abang ya adee,
 abang mau ade kembali di sisi abang.
 `;
 
 let i=0;
+const mainTextEl=document.getElementById("mainText");
 
 function checkPassword(){
-  const v=passwordInput.value;
-  if(v===PASSWORD){
+  if(passwordInput.value===PASSWORD){
     loginBox.style.display="none";
     content.style.display="block";
     typeText();
@@ -217,7 +215,6 @@ function typeText(){
     i++;setTimeout(typeText,28);
   }
 }
-const mainTextEl=document.getElementById("mainText");
 
 function showSecret(){
   openOverlay("Abang sayang Adee lebih dari apapun ❤️");
@@ -239,15 +236,15 @@ function closeOverlay(){
 }
 
 function rainHearts(){
-  for(let i=0;i<45;i++){
+  for(let i=0;i<55;i++){
     const h=document.createElement("div");
     h.className="heart";
     h.innerText="❤️";
     h.style.left=Math.random()*100+"vw";
-    h.style.fontSize=16+Math.random()*20+"px";
-    h.style.animationDuration=3+Math.random()*3+"s";
+    h.style.fontSize=14+Math.random()*26+"px";
+    h.style.animationDuration=3+Math.random()*4+"s";
     document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
+    setTimeout(()=>h.remove(),7000);
   }
 }
 
@@ -259,7 +256,7 @@ function hugEffect(){
   h.style.top="50%";
   h.style.transform="translate(-50%,-50%)";
   document.body.appendChild(h);
-  setTimeout(()=>h.remove(),2200);
+  setTimeout(()=>h.remove(),2300);
 }
 </script>
 

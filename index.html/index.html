@@ -99,8 +99,8 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
   z-index:5;
 }
 @keyframes fall{
-  from{transform:translate(-40px,-10vh);opacity:1}
-  to{transform:translate(40px,110vh);opacity:0}
+  from{transform:translateY(-10vh);opacity:1}
+  to{transform:translateY(110vh);opacity:0}
 }
 
 #hug{
@@ -110,12 +110,12 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
   transform:translate(-50%,-50%);
   font-size:76px;
   z-index:11;
-  animation:hugAnimSide 2.4s ease forwards;
+  animation:hugAnimSide 2.3s ease forwards;
   pointer-events:none;
 }
 @keyframes hugAnimSide{
   0%{
-    transform:translate(-50%,-50%) translateX(-60px) scale(.6);
+    transform:translate(-50%,-50%) translateX(-40px) scale(.6);
     opacity:0
   }
   40%{
@@ -123,11 +123,11 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
     opacity:1
   }
   70%{
-    transform:translate(-50%,-50%) translateX(20px) scale(1);
+    transform:translate(-50%,-50%) translateX(10px) scale(1);
     opacity:1
   }
   100%{
-    transform:translate(-50%,-50%) translateX(60px) scale(.85);
+    transform:translate(-50%,-50%) translateX(40px) scale(.85);
     opacity:0
   }
 }
@@ -143,7 +143,7 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
 <div class="container heartbeat">
 
 <div id="loginBox">
-  <h1>Masuk dulu ya Adee ❤️</h1>
+  <h1>Masuk dulu yyaa adee ❤️</h1>
   <input type="password" id="passwordInput" placeholder="Adeku Tersayang">
   <br>
   <button onclick="checkPassword()">Masuk 💌</button>
@@ -151,7 +151,7 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
 </div>
 
 <div id="content">
-  <h1>Selamat datang di halaman khusus kamu 💖</h1>
+  <h1>Selamat datang di halaman khusus adee 💖</h1>
   <div class="text-box">
     <p id="mainText"></p>
   </div>
@@ -174,30 +174,31 @@ const PASSWORD="21052005";
 const mainText=`
 Hai Adee,
 
-mungkin ini cuma website sederhana, tapi setiap barisnya abang bikin sambil mikirin adee sayang.
+mungkin ini cuma website sederhana,
+tapi setiap barisnya abang bikin sambil mikirin adee sayang.
 
-Terima kasih sudah hadir di hidup abang, jadi alasan senyum abang, jadi tempat pulang, dan jadi orang yang selalu abang sayang dan abang cintai setiap hari.
+Terima kasih sudah hadir di hidup abang,
+jadi alasan senyum abang,
+jadi tempat pulang,
+dan jadi orang yang selalu abang sayang dan abang cintai setiap hari.
 
-Abang nggak janji sempurna, tapi abang janji selalu berusaha buat jadi yang terbaik untuk ade, dengerin ade, dukung ade, dan ada untuk ade dan hidup bareng ade sejauh yang kita bisa.
-
-Di hari Valentine ini, abang cuma mau ade tahu satu hal:
-
-Ade itu berharga, ade itu istimewa, dan abang bersyukur bisa milikin ade sayangg.
-
-abang sayang ade hari ini, besok, seterusnya dan selamanya
+Abang sayang ade hari ini,
+besok,
+dan selamanya.
 `;
 
 const sorryText=`
-ade sayang, abang minta maaf yaa,
-hari hari ade jadi jelek terus karena abang,
-dan karena keegoisan abang pula kita jadi renggang kaya sekarang.
+Ade sayang,
 
-abang minta maaf atas segala hal yang udah abang perbuat ke ade,
-abang cuma mau ade tau satu hal bahwa abang selalu mencintai ade
-kapanpun dan dimanapun.
+abang minta maaf yaa…
+abang sadar banyak salah,
+dan abang nyesel bikin ade sedih.
 
-maafin abang ya adee.
-abang mau ade kembali di sisi abang
+Abang cuma mau ade tau,
+abang selalu cinta ade,
+dan masih berharap bisa peluk ade lagi.
+
+Maafin abang ya adee.
 `;
 
 let i=0;
@@ -222,7 +223,7 @@ function typeText(){
 }
 
 function showSecret(){
-  openOverlay("Ade itu rumah buat abang 🤍");
+  openOverlay("Abang sayang Adee lebih dari apapun ❤️");
 }
 
 function showSorry(){
@@ -241,10 +242,10 @@ function closeOverlay(){
 }
 
 function rainHearts(){
-  for(let i=0;i<40;i++){
+  for(let i=0;i<50;i++){
     const h=document.createElement("div");
     h.className="heart";
-    h.innerText="🤍";
+    h.innerText="❤️";
     h.style.left=Math.random()*100+"vw";
     h.style.fontSize=14+Math.random()*22+"px";
     h.style.animationDuration=3+Math.random()*3+"s";
@@ -256,9 +257,9 @@ function rainHearts(){
 function hugEffect(){
   const h=document.createElement("div");
   h.id="hug";
-  h.innerText="🤍🤗🤍";
+  h.innerText="❤️🤗❤️";
   document.body.appendChild(h);
-  setTimeout(()=>h.remove(),2400);
+  setTimeout(()=>h.remove(),2300);
 }
 </script>
 

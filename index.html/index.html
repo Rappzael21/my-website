@@ -35,25 +35,19 @@ body{
 #loginBox{animation:fadeIn .8s ease}
 #content{display:none}
 
-h1{margin-top:0}
 input{
-  padding:12px 16px;
-  border-radius:25px;border:none;outline:none;
+  padding:12px 16px;border-radius:25px;border:none;outline:none;
   font-size:16px;text-align:center;width:220px;
 }
 button{
-  margin:10px;
-  padding:12px 26px;
-  border-radius:30px;border:none;
-  background:#ff3f66;color:#fff;
-  font-size:15px;cursor:pointer;
+  margin:10px;padding:12px 26px;border-radius:30px;border:none;
+  background:#ff3f66;color:#fff;font-size:15px;cursor:pointer;
   transition:.3s;
 }
 button:hover{transform:scale(1.08)}
 
 #errorMsg{
-  color:#ffdde1;
-  margin-top:10px;
+  color:#ffdde1;margin-top:10px;
   animation:shake .4s;
 }
 @keyframes shake{
@@ -65,14 +59,11 @@ button:hover{transform:scale(1.08)}
 }
 
 .text-box{
-  max-height:45vh;
-  overflow-y:auto;
-  padding-right:6px;
+  max-height:45vh;overflow-y:auto;padding-right:6px;
 }
 .text-box::-webkit-scrollbar{width:4px}
 .text-box::-webkit-scrollbar-thumb{
-  background:rgba(255,255,255,.5);
-  border-radius:4px;
+  background:rgba(255,255,255,.5);border-radius:4px;
 }
 
 p{line-height:1.7;font-size:17px;white-space:pre-line}
@@ -87,8 +78,7 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
 #overlay{
   position:fixed;inset:0;
   background:rgba(0,0,0,.6);
-  display:none;
-  justify-content:center;align-items:center;
+  display:none;justify-content:center;align-items:center;
   z-index:10;
 }
 .overlay-box{
@@ -96,29 +86,32 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
   background:rgba(255,255,255,.15);
   backdrop-filter:blur(10px);
   border-radius:20px;
-  padding:25px;
-  text-align:center;
+  padding:25px;text-align:center;
   animation:fadeIn .8s ease;
 }
 
-.confetti{
-  position:fixed;
-  width:12px;height:12px;
-  background:red;
-  transform:rotate(45deg);
-  animation:fall 4s linear forwards;
+.heart{
+  position:fixed;font-size:22px;
+  animation:fall 5s linear forwards;
+  pointer-events:none;
 }
-.confetti::before,.confetti::after{
-  content:"";
-  position:absolute;
-  width:12px;height:12px;
-  background:red;
-  border-radius:50%;
-}
-.confetti::before{top:-6px;left:0}
-.confetti::after{left:-6px;top:0}
 @keyframes fall{
-  to{transform:translateY(100vh) rotate(45deg);opacity:0}
+  from{transform:translateY(-10vh) scale(1);opacity:1}
+  to{transform:translateY(110vh) scale(1.4);opacity:0}
+}
+
+#hug{
+  position:fixed;
+  font-size:90px;
+  opacity:0;
+  animation:hugAnim 2.2s ease forwards;
+  pointer-events:none;
+}
+@keyframes hugAnim{
+  0%{transform:scale(.5);opacity:0}
+  40%{transform:scale(1.1);opacity:1}
+  70%{transform:scale(1);opacity:1}
+  100%{transform:scale(.8);opacity:0}
 }
 
 @keyframes fadeIn{
@@ -133,7 +126,7 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
 
 <div id="loginBox">
   <h1>Masuk dulu ya Adee ❤️</h1>
-  <input type="password" id="passwordInput" placeholder="DDMMYYYY">
+  <input type="password" id="passwordInput" placeholder="Ade Kecilku">
   <br>
   <button onclick="checkPassword()">Masuk 💌</button>
   <p id="errorMsg"></p>
@@ -144,8 +137,7 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
   <div class="text-box">
     <p id="mainText"></p>
   </div>
-
-  <button class="action-btn" onclick="showSecret()">Baca Pesan Rahasia 💌</button>
+  <button class="action-btn" onclick="showSecret()">Pesan Rahasia 💌</button>
   <button class="action-btn" onclick="showSorry()">Abang Mau Ngomong 🥺</button>
 </div>
 
@@ -154,14 +146,14 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
 <div id="overlay">
   <div class="overlay-box">
     <p id="overlayText"></p>
-    <button onclick="closeOverlay()">Peluk Ade dari jauh 🤍</button>
+    <button onclick="closeOverlay()">Peluk Ade dari Jauh 🤍</button>
   </div>
 </div>
 
 <script>
-const PASSWORD = "21052005";
+const PASSWORD="21052005";
 
-const mainText = `
+const mainText=`
 Hai Adee,
 
 mungkin ini cuma website sederhana,
@@ -187,7 +179,7 @@ seterusnya,
 dan selamanya.
 `;
 
-const sorryText = `
+const sorryText=`
 Ade sayang,
 
 abang minta maaf yaa…
@@ -208,24 +200,24 @@ abang mau ade kembali di sisi abang.
 let i=0;
 
 function checkPassword(){
-  const val=document.getElementById("passwordInput").value;
-  if(val===PASSWORD){
-    document.getElementById("loginBox").style.display="none";
-    document.getElementById("content").style.display="block";
+  const v=passwordInput.value;
+  if(v===PASSWORD){
+    loginBox.style.display="none";
+    content.style.display="block";
     typeText();
   }else{
-    document.getElementById("errorMsg").innerText=
+    errorMsg.innerText=
     "hayooo masa tanggal lahir ade ngga inget hehe, coba lagi sayangku";
   }
 }
 
 function typeText(){
   if(i<mainText.length){
-    document.getElementById("mainText").innerHTML+=mainText.charAt(i);
-    i++;
-    setTimeout(typeText,28);
+    mainTextEl.innerHTML+=mainText.charAt(i);
+    i++;setTimeout(typeText,28);
   }
 }
+const mainTextEl=document.getElementById("mainText");
 
 function showSecret(){
   openOverlay("Abang sayang Adee lebih dari apapun ❤️");
@@ -233,27 +225,41 @@ function showSecret(){
 
 function showSorry(){
   openOverlay(sorryText);
-  launchConfetti();
+  rainHearts();
 }
 
-function openOverlay(text){
-  document.getElementById("overlayText").innerText=text;
-  document.getElementById("overlay").style.display="flex";
+function openOverlay(t){
+  overlayText.innerText=t;
+  overlay.style.display="flex";
 }
 
 function closeOverlay(){
-  document.getElementById("overlay").style.display="none";
+  overlay.style.display="none";
+  hugEffect();
 }
 
-function launchConfetti(){
-  for(let i=0;i<25;i++){
-    const c=document.createElement("div");
-    c.className="confetti";
-    c.style.left=Math.random()*100+"vw";
-    c.style.background=["#ff6b81","#ff9a9e","#ffd1dc"][Math.floor(Math.random()*3)];
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),4000);
+function rainHearts(){
+  for(let i=0;i<45;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerText="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=16+Math.random()*20+"px";
+    h.style.animationDuration=3+Math.random()*3+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
   }
+}
+
+function hugEffect(){
+  const h=document.createElement("div");
+  h.id="hug";
+  h.innerText="🤍🫂🤍";
+  h.style.left="50%";
+  h.style.top="50%";
+  h.style.transform="translate(-50%,-50%)";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),2200);
 }
 </script>
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Halaman Khusus Ade</title>
+<title>Untuk Ade 💖</title>
 
 <style>
 *{box-sizing:border-box;font-family:'Segoe UI',sans-serif}
@@ -20,7 +20,12 @@ body{
   text-align:center;color:#fff;z-index:2;position:relative
 }
 h1{margin:6px 0 14px;font-size:26px}
-p{font-size:15px;line-height:1.7}
+p{
+  font-size:15px;
+  line-height:1.8;
+  max-height:55vh;
+  overflow:auto;
+}
 input{
   width:100%;padding:12px;border-radius:20px;border:none;
   outline:none;margin-top:10px;text-align:center
@@ -29,19 +34,13 @@ button{
   margin-top:14px;padding:12px 18px;border:none;border-radius:30px;
   background:#ff4d6d;color:#fff;font-size:15px;cursor:pointer
 }
-button:active{transform:scale(.96)}
-#error{color:#ff2d2d;margin-top:10px;animation:shake .4s}
-@keyframes shake{
-  0%,100%{transform:translateX(0)}
-  25%{transform:translateX(-5px)}
-  75%{transform:translateX(5px)}
-}
+#error{color:#ff2d2d;margin-top:10px}
 .overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.5);
+  position:fixed;inset:0;background:rgba(0,0,0,.55);
   display:none;z-index:5
 }
 
-/* HORIZONTAL CENTER EMOJI (foreground) */
+/* CENTER EMOJI */
 .center-emoji{
   position:fixed;top:50%;left:50%;
   transform:translate(-50%,-50%);
@@ -55,18 +54,20 @@ button:active{transform:scale(.96)}
   100%{opacity:0;transform:translate(-50%,-50%) scale(.9)}
 }
 
-/* HORIZONTAL SLIDE (smooth, no vertical drift) */
+/* HORIZONTAL SLIDE */
 .slide{
-  position:fixed;top:50%;font-size:64px;opacity:0;z-index:6;
-  animation:slideIn 2.4s cubic-bezier(.2,.7,.2,1) forwards
+  position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:64px;opacity:0;z-index:6;
+  animation:slideSide 2.4s ease forwards
 }
-@keyframes slideIn{
-  0%{transform:translate(-140vw,-50%);opacity:0}
-  35%{opacity:1}
-  100%{transform:translate(0,-50%);opacity:0}
+@keyframes slideSide{
+  0%{transform:translate(-120%,-50%);opacity:0}
+  40%{opacity:1}
+  100%{transform:translate(120%,-50%);opacity:0}
 }
 
-/* ABSTRACT LOVE RAIN */
+/* LOVE RAIN */
 .love{
   position:fixed;font-size:26px;z-index:6;opacity:0;
   animation:fall 3.8s linear forwards
@@ -82,7 +83,7 @@ button:active{transform:scale(.96)}
 <body>
 
 <div class="container" id="login">
-  <h1>Masuk dulu yyaa ade 💗</h1>
+  <h1>Masuk dulu ya ade 💗</h1>
   <input type="password" id="pw" placeholder="Adeku Tersayang">
   <button onclick="cek()">Masuk</button>
   <div id="error"></div>
@@ -90,12 +91,8 @@ button:active{transform:scale(.96)}
 
 <div class="container" id="content" style="display:none">
   <h1>Selamat datang di halaman khusus ade 💖</h1>
-  <p>
-    Terima kasih sudah hadir di hidup abang.<br>
-    Jadi rumah, jadi senyum, dan jadi orang yang selalu abang sayang.
-    <br><br>
-    Abang sayang ade hari ini, besok, dan selamanya.
-  </p>
+  <p id="mainText"></p>
+
   <button onclick="secret()">Pesan Rahasia 💌</button>
   <button onclick="sorry()">Abang Mau Ngomong 🥺</button>
   <button onclick="peluk()">Peluk Ade dari Jauh 🤗</button>
@@ -104,11 +101,45 @@ button:active{transform:scale(.96)}
 <div class="overlay" id="overlay"></div>
 
 <script>
+const mainText = `
+Hai Adee,
+
+mungkin ini cuma website sederhana,
+tapi setiap barisnya abang bikin sambil mikirin ade.
+
+Terima kasih sudah hadir di hidup abang,
+jadi alasan senyum abang,
+jadi tempat pulang,
+dan jadi orang yang selalu abang sayang.
+
+Abang nggak janji sempurna,
+tapi abang janji selalu berusaha,
+buat dengerin ade,
+buat dukung ade,
+dan buat jalan bareng ade sejauh yang kita bisa.
+
+Ade itu berharga.
+Ade itu istimewa.
+Dan abang bersyukur banget punya ade.
+
+Abang sayang ade hari ini,
+besok,seterusnya,
+dan selamanya.
+`;
+
+let i=0;
+function typeText(){
+  if(i<mainText.length){
+    mainTextEl.innerHTML+=mainText.charAt(i);
+    i++;setTimeout(typeText,28);
+  }
+}
+
 function cek(){
-  const pw=document.getElementById('pw').value;
-  if(pw==="21052005"){
+  if(pw.value==="21052005"){
     login.style.display="none";
     content.style.display="block";
+    typeText();
   }else{
     error.innerText="hayooo masa tanggal lahir ade ngga inget hehe, coba lagi sayangku";
   }
@@ -124,7 +155,7 @@ function secret(){
   overlayOn();
   slideEmoji("💖");
   setTimeout(()=>{
-    alert("ade selalu jadi alasan abang bertahan 🤍");
+    alert("Ade itu rumah buat abang 🤍");
     overlayOff();
   },2200);
 }
@@ -134,42 +165,46 @@ function sorry(){
   slideEmoji("🤍");
   loveRain();
   setTimeout(()=>{
-    alert("ade sayang, abang minta maaf yaa, hari hari ade jadi jelek terus karena abang, dan karena keegoisan abang kita jadi renggang. abang minta maaf atas segala hal yang abang perbuat. abang cuma mau ade tau satu hal: abang selalu mencintai ade kapanpun dan dimanapun. maafin abang ya adee. abang mau ade kembali di sisi abang.");
+    alert(`ade sayang, abang minta maaf yaa,
+hari hari ade jadi jelek terus karena abang,
+dan karena keegoisan abang pula kita jadi renggang kaya sekarang.
+
+abang minta maaf atas segala hal yang udah abang perbuat ke ade.
+abang cuma mau ade tau satu hal,
+bahwa abang selalu mencintai ade kapanpun dan dimanapun.
+
+maafin abang ya adee.
+abang mau ade kembali di sisi abang`);
     overlayOff();
   },2600);
 }
 
-function centerEmoji(char){
+function centerEmoji(c){
   const e=document.createElement("div");
-  e.className="center-emoji";
-  e.innerText=char;
+  e.className="center-emoji";e.innerText=c;
   document.body.appendChild(e);
   setTimeout(()=>e.remove(),2600);
 }
-
-function slideEmoji(char){
+function slideEmoji(c){
   const e=document.createElement("div");
-  e.className="slide";
-  e.innerText=char;
+  e.className="slide";e.innerText=c;
   document.body.appendChild(e);
   setTimeout(()=>e.remove(),2400);
 }
-
 function loveRain(){
-  for(let i=0;i<26;i++){
+  for(let i=0;i<28;i++){
     const l=document.createElement("div");
-    l.className="love";
-    l.innerText="🤍";
+    l.className="love";l.innerText="🤍";
     l.style.left=Math.random()*100+"vw";
-    l.style.animationDelay=Math.random()*1.4+"s";
+    l.style.animationDelay=Math.random()*1.2+"s";
     document.body.appendChild(l);
     setTimeout(()=>l.remove(),4200);
   }
 }
-
 function overlayOn(){overlay.style.display="block"}
 function overlayOff(){overlay.style.display="none"}
 </script>
 
 </body>
 </html>
+

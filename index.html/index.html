@@ -30,6 +30,8 @@ body{
   padding:20px;
   text-align:center;
   box-shadow:0 20px 40px rgba(0,0,0,.2);
+  position:relative;
+  z-index:1;
 }
 
 #content{display:none}
@@ -60,10 +62,6 @@ button:hover{transform:scale(1.08)}
 .text-box{
   max-height:45vh;overflow-y:auto;padding-right:6px;
 }
-.text-box::-webkit-scrollbar{width:4px}
-.text-box::-webkit-scrollbar-thumb{
-  background:rgba(255,255,255,.5);border-radius:4px;
-}
 
 p{line-height:1.7;font-size:17px;white-space:pre-line}
 
@@ -77,39 +75,61 @@ p{line-height:1.7;font-size:17px;white-space:pre-line}
 #overlay{
   position:fixed;inset:0;
   background:rgba(0,0,0,.65);
-  display:none;justify-content:center;align-items:center;
+  display:none;
+  justify-content:center;
+  align-items:center;
   z-index:10;
 }
+
 .overlay-box{
   max-width:600px;
   background:rgba(255,255,255,.15);
   backdrop-filter:blur(10px);
   border-radius:20px;
-  padding:25px;text-align:center;
+  padding:25px;
+  text-align:center;
   animation:fadeIn .8s ease;
+  z-index:12;
 }
 
 .heart{
   position:fixed;
-  animation:fall linear forwards;
   pointer-events:none;
+  animation:fall linear forwards;
+  z-index:5;
 }
 @keyframes fall{
-  from{transform:translateY(-10vh) scale(1);opacity:1}
-  to{transform:translateY(110vh) scale(1.4);opacity:0}
+  from{transform:translateY(-10vh);opacity:1}
+  to{transform:translateY(110vh);opacity:0}
 }
 
 #hug{
   position:fixed;
-  font-size:90px;
-  animation:hugAnim 2.3s ease forwards;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  font-size:76px;
+  z-index:11;
+  animation:hugAnimSide 2.3s ease forwards;
   pointer-events:none;
 }
-@keyframes hugAnim{
-  0%{transform:scale(.5);opacity:0}
-  40%{transform:scale(1.15);opacity:1}
-  70%{transform:scale(1);opacity:1}
-  100%{transform:scale(.8);opacity:0}
+@keyframes hugAnimSide{
+  0%{
+    transform:translate(-50%,-50%) translateX(-40px) scale(.6);
+    opacity:0
+  }
+  40%{
+    transform:translate(-50%,-50%) translateX(0) scale(1.15);
+    opacity:1
+  }
+  70%{
+    transform:translate(-50%,-50%) translateX(10px) scale(1);
+    opacity:1
+  }
+  100%{
+    transform:translate(-50%,-50%) translateX(40px) scale(.85);
+    opacity:0
+  }
 }
 
 @keyframes fadeIn{
@@ -162,37 +182,23 @@ jadi alasan senyum abang,
 jadi tempat pulang,
 dan jadi orang yang selalu abang sayang dan abang cintai setiap hari.
 
-Abang nggak janji sempurna,
-tapi abang janji selalu berusaha buat jadi yang terbaik untuk ade,
-dengerin ade, dukung ade,
-dan ada untuk ade sejauh yang kita bisa.
-
-Ade itu berharga,
-ade itu istimewa,
-dan abang bersyukur bisa milikin ade sayang.
-
 Abang sayang ade hari ini,
 besok,
-seterusnya,
 dan selamanya.
 `;
 
 const sorryText=`
 Ade sayang,
 
-abang minta maaf yaa,
-hari-hari ade jadi jelek terus karena abang,
-dan karena keegoisan abang pula kita jadi renggang kaya sekarang.
+abang minta maaf yaa…
+abang sadar banyak salah,
+dan abang nyesel bikin ade sedih.
 
-Abang minta maaf atas segala hal
-yang udah abang perbuat ke ade.
+Abang cuma mau ade tau,
+abang selalu cinta ade,
+dan masih berharap bisa peluk ade lagi.
 
-Abang cuma mau ade tau satu hal,
-bahwa abang selalu mencintai ade
-kapanpun dan dimanapun.
-
-Maafin abang ya adee,
-abang mau ade kembali di sisi abang.
+Maafin abang ya adee.
 `;
 
 let i=0;
@@ -236,25 +242,22 @@ function closeOverlay(){
 }
 
 function rainHearts(){
-  for(let i=0;i<55;i++){
+  for(let i=0;i<50;i++){
     const h=document.createElement("div");
     h.className="heart";
     h.innerText="❤️";
     h.style.left=Math.random()*100+"vw";
-    h.style.fontSize=14+Math.random()*26+"px";
-    h.style.animationDuration=3+Math.random()*4+"s";
+    h.style.fontSize=14+Math.random()*22+"px";
+    h.style.animationDuration=3+Math.random()*3+"s";
     document.body.appendChild(h);
-    setTimeout(()=>h.remove(),7000);
+    setTimeout(()=>h.remove(),6000);
   }
 }
 
 function hugEffect(){
   const h=document.createElement("div");
   h.id="hug";
-  h.innerText="🤍🫂🤍";
-  h.style.left="50%";
-  h.style.top="50%";
-  h.style.transform="translate(-50%,-50%)";
+  h.innerText="❤️🤗❤️";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),2300);
 }

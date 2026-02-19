@@ -4,169 +4,329 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Untuk Adee 🤍</title>
+
 <style>
-*{box-sizing:border-box;font-family:'Segoe UI',sans-serif;margin:0;padding:0;}
-body{height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:center;color:#fff;background: linear-gradient(160deg,#0b1d3a,#1a2e4f,#3a4f6f);position: relative;transition: background 10s ease-in-out;perspective:1000px;}
-.bg-silhouette{position:fixed;bottom:0;left:0;width:100%;height:35%;background: url('https://source.unsplash.com/1600x600/?newzealand,mountain,silhouette') no-repeat bottom center;background-size: cover;opacity:0.3;z-index:0;pointer-events:none;}
-.cloud{position:fixed;top:0;width:300px;height:80px;background: rgba(255,255,255,0.05);border-radius:50%;filter: blur(20px);animation:cloudMove linear infinite;z-index:1;}
-@keyframes cloudMove{0%{transform:translateX(-350px);}100%{transform:translateX(110vw);}}
-.container{width:100%;max-width:720px;background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);border-radius:20px;padding:22px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,0.25);position: relative; z-index:10;transition:all 0.9s ease-in-out;transform-style: preserve-3d;}
-.container::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;border-radius:20px;background: linear-gradient(120deg, rgba(255,255,255,0.05), rgba(255,255,255,0.15), rgba(255,255,255,0.05));pointer-events:none;animation:shine 3s ease-in-out infinite;}
-@keyframes shine{0%,100%{background-position:-200% 0;}50%{background-position:200% 0;}}
-#content{opacity:0; transform: scale(0.95); display:block; transition:all 0.9s ease-in-out;}
-input{padding:12px 18px;border-radius:25px;border:none;font-size:16px;text-align:center;width:240px;}
-button{margin:10px;padding:12px 26px;border-radius:30px;border:none;background:#ff3f66;color:#fff;font-size:15px;cursor:pointer;transition:.3s;}
-button:hover{transform:scale(1.07)}
-#errorMsg{margin-top:10px;color:#ffe3ea}
-.text-box{max-height:45vh;overflow-y:auto;padding-right:6px;}
-p{line-height:1.75;font-size:17px;white-space:pre-line}
-#overlay{position:fixed; inset:0;background:rgba(0,0,0,.65);display:none;justify-content:center;align-items:center;z-index:20;}
-.overlay-box{max-width:600px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:20px;padding:25px;text-align:center;animation:fadeUp .7s ease;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:none}}
-#hug{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:72px;animation:hugSide 2.4s ease forwards;z-index:30;}
-@keyframes hugSide{0%{transform:translate(-50%,-50%) translateX(-60px);opacity:0}40%{opacity:1}70%{transform:translate(-50%,-50%) translateX(20px)}100%{transform:translate(-50%,-50%) translateX(70px);opacity:0}}
-.shape{position:absolute;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,0.4);animation:fallShape linear infinite;pointer-events:auto;cursor:pointer;z-index:5;}
-@keyframes fallShape{0%{transform:translateY(-10vh) translateX(0) rotate(0deg);opacity:0;}10%{opacity:0.4;}50%{opacity:0.6;}100%{transform:translateY(110vh) translateX(50px) rotate(360deg);opacity:0;}}
-.star{position:absolute;width:12px;height:12px;background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/White_star.svg/32px-White_star.svg.png') no-repeat center center;background-size:contain;opacity:0.8;pointer-events:none;animation:fallStar linear infinite;z-index:4;filter:drop-shadow(0 0 4px rgba(255,255,255,0.8));}
-@keyframes fallStar{0%{transform:translateY(-10vh) translateX(0) scale(0.3);opacity:0;}10%{opacity:0.5;}50%{opacity:0.8;}100%{transform:translateY(110vh) translateX(50px) scale(1);opacity:0;}}
+*{
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  background:linear-gradient(180deg,#0b132b,#1c2541,#3a506b);
+  animation:bgShift 25s ease-in-out infinite alternate;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+}
+
+@keyframes bgShift{
+  0%{background:linear-gradient(180deg,#0b132b,#1c2541,#3a506b)}
+  100%{background:linear-gradient(180deg,#0f172a,#1e293b,#334155)}
+}
+
+.mountains{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:35vh;
+  background:linear-gradient(to top,#020617,#02061700);
+  z-index:1;
+}
+
+/* ===== STAR ===== */
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  opacity:.8;
+  animation:shoot linear forwards;
+  z-index:2;
+}
+
+@keyframes shoot{
+  from{transform:translate(0,0);opacity:1}
+  to{transform:translate(-420px,420px);opacity:0}
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  position:relative;
+  z-index:3;
+  max-width:720px;
+  width:90%;
+  padding:28px;
+  background:rgba(30,41,59,0.55);
+  backdrop-filter:blur(10px);
+  border-radius:20px;
+  box-shadow:0 20px 50px rgba(0,0,0,.4);
+  animation:fadeIn .9s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+h1{text-align:center;font-weight:500;margin-bottom:14px}
+
+.text-box{
+  max-height:48vh;
+  overflow-y:auto;
+  padding-right:6px;
+}
+
+p{
+  line-height:1.8;
+  font-size:17px;
+  white-space:pre-line;
+}
+
+input{
+  width:240px;
+  padding:12px;
+  border-radius:25px;
+  border:none;
+  outline:none;
+  text-align:center;
+  font-size:15px;
+}
+
+button{
+  margin-top:14px;
+  padding:12px 26px;
+  border-radius:30px;
+  border:none;
+  background:#64748b;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+}
+button:hover{transform:scale(1.08);background:#94a3b8}
+
+#errorMsg{
+  margin-top:10px;
+  color:#ffd1dc;
+  animation:shake .4s;
+}
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-5px)}
+  50%{transform:translateX(5px)}
+  75%{transform:translateX(-5px)}
+  100%{transform:translateX(0)}
+}
+
+.action-btn{
+  animation:pulse 1.6s infinite;
+  margin:8px;
+}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.07)}
+  100%{transform:scale(1)}
+}
+
+/* ===== OVERLAY ===== */
+#overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+}
+
+.overlay-box{
+  max-width:600px;
+  background:rgba(30,41,59,.65);
+  backdrop-filter:blur(10px);
+  border-radius:20px;
+  padding:26px;
+  text-align:center;
+  animation:fadeIn .6s ease;
+}
+
+.heart{
+  position:fixed;
+  pointer-events:none;
+  animation:fall linear forwards;
+  z-index:5;
+}
+@keyframes fall{
+  from{transform:translateY(-10vh);opacity:1}
+  to{transform:translateY(110vh);opacity:0}
+}
+
+/* ===== HUG ===== */
+#hug{
+  position:fixed;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  font-size:80px;
+  z-index:12;
+  animation:hugSide 2.2s ease forwards;
+}
+@keyframes hugSide{
+  0%{transform:translate(-50%,-50%) translateX(-40px) scale(.7);opacity:0}
+  40%{transform:translate(-50%,-50%) translateX(0) scale(1.15);opacity:1}
+  70%{transform:translate(-50%,-50%) translateX(10px) scale(1);opacity:1}
+  100%{transform:translate(-50%,-50%) translateX(40px) scale(.85);opacity:0}
+}
 </style>
 </head>
 <body>
-<div class="bg-silhouette"></div>
-<div class="cloud" style="top:50px; width:400px; height:100px;"></div>
-<div class="cloud" style="top:120px; width:350px; height:80px;"></div>
-<div class="cloud" style="top:200px; width:300px; height:70px;"></div>
-<div class="container" id="container">
-<div id="loginBox">
-  <h1>Masuk dulu yyaa Adee 🤍</h1>
+
+<div class="mountains"></div>
+
+<div class="container" id="loginBox">
+  <h1>Masuk dulu ya Adee 🤍</h1>
   <input type="password" id="passwordInput" placeholder="Adeku Tersayang">
   <br>
   <button onclick="checkPassword()">Masuk</button>
   <p id="errorMsg"></p>
 </div>
-<div id="content">
-  <h1>Halaman khusus adee 🤍</h1>
-  <div class="text-box"><p id="mainText"></p></div>
-  <button onclick="showSecret()">Pesan Rahasia</button>
-  <button onclick="showSorry()">Abang Mau Ngomong</button>
+
+<div class="container" id="content" style="display:none">
+  <h1>Hai Adee 🤍</h1>
+  <div class="text-box">
+    <p id="mainText"></p>
+  </div>
+  <button class="action-btn" onclick="showSecret()">Pesan Rahasia 💌</button>
+  <button class="action-btn" onclick="showSorry()">Abang Mau Ngomong 🥺</button>
 </div>
-</div>
+
 <div id="overlay">
   <div class="overlay-box">
     <p id="overlayText"></p>
-    <button onclick="closeOverlay()">Peluk ade <3</button>
+    <button onclick="closeOverlay()">Peluk Ade dari Jauh 🤍</button>
   </div>
 </div>
+
 <script>
 const PASSWORD="21052005";
 let wrongCount=0;
-const mainTextEl=document.getElementById("mainText");
-const loginBox=document.getElementById("loginBox");
-const content=document.getElementById("content");
-const container=document.getElementById("container");
-const body=document.body;
-const overlayText=document.getElementById("overlayText");
 
-const mainText=`Hai Adee,
+const mainText=`
+Hai Adee,
 
-mungkin ini cuma website sederhana,
-tapi setiap barisnya abang bikin sambil mikirin ade.
+mungkin ini cuma website sederhana, tapi setiap barisnya abang bikin sambil mikirin adee sayang.
 
-Terima kasih sudah hadir di hidup abang,
-jadi alasan senyum abang,
-jadi tempat pulang,
-dan jadi orang yang selalu abang sayang.
+Terima kasih sudah hadir di hidup abang, jadi alasan senyum abang, jadi tempat pulang, dan jadi orang yang selalu abang sayang dan abang cintai setiap hari.
 
-Abang mungkin nggak sempurna,
-tapi abang selalu berusaha jadi yang terbaik buat ade.
+Abang nggak janji sempurna, tapi abang janji selalu berusaha buat jadi yang terbaik buat ade, dengerin ade, dukung ade, dan ada untuk ade sejauh yang abang bisa.
+
+Ade itu berharga.
+Ade itu istimewa.
 
 Abang sayang ade hari ini,
 besok,
-dan seterusnya,
-sampai kapanpun.
+dan selamanya.
 `;
 
-const sorryText=`Ade sayang,
+const sorryText=`
+Ade sayang,
 
-abang minta maaf yaa…
+abang minta maaf yaa,
 hari-hari ade jadi berat karena abang,
 dan karena ego abang juga kita jadi sejauh ini.
 
-Abang minta maaf atas semua yang udah abang lakuin ke ade.
-Abang cuma mau ade tau satu hal:
-abang selalu mencintai ade,
-kapanpun dan dimanapun.
+abang minta maaf atas semua hal yang udah abang lakuin ke ade.
+abang cuma mau ade tau satu hal:
+abang selalu mencintai ade kapanpun dan dimanapun.
 
-Maafin abang ya adee.
-Abang mau ade kembali di sisi abang.
+maafin abang ya adee.
+abang mau ade kembali di sisi abang.
 `;
+
+let i=0;
 
 function checkPassword(){
   if(passwordInput.value===PASSWORD){
-    loginBox.style.transition="all 0.8s ease-in-out";
-    loginBox.style.opacity="0";
-    loginBox.style.transform="scale(0.8) rotateX(5deg)";
-    setTimeout(()=>{
-      loginBox.style.display="none";
-      content.style.opacity="0";
-      content.style.transform="scale(0.95)";
-      content.style.display="block";
-      setTimeout(()=>{
-        content.style.transition="all 0.8s ease-in-out";
-        content.style.opacity="1";
-        content.style.transform="scale(1) rotateX(0deg)";
-        setTimeout(typeText,500);
-      },50);
-    },800);
+    loginBox.style.display="none";
+    content.style.display="block";
+    typeText();
+    startStars();
   }else{
     wrongCount++;
-    if(wrongCount>=3){errorMsg.innerText="Clue: tanggal penting yang harusnya abang inget seumur hidup 😶‍🌫️";}
-    else{errorMsg.innerText="Salah yaa… coba inget lagi sayang 🤍";}
+    errorMsg.innerText="hayooo masa tanggal lahir ade ngga inget hehe, coba lagi sayangku";
+    if(wrongCount>=3){
+      errorMsg.innerText+=" 😜 (clue: hari spesial ade)";
+    }
   }
 }
 
-let i=0;
-function typeText(){if(i<mainText.length){mainTextEl.innerHTML+=mainText.charAt(i);i++;setTimeout(typeText,28);}}
-
-function showSecret(){openOverlay("Abang sayang Adee lebih dari apapun 🤍");}
-function showSorry(){openOverlay(sorryText);createFloatingShapes();}
-function openOverlay(t){overlayText.innerText=t;overlay.style.display="flex";}
-function closeOverlay(){overlay.style.display="none";hugEffect();}
-
-function hugEffect(){const h=document.createElement("div");h.id="hug";h.innerText="🤍🤗🤍";document.body.appendChild(h);setTimeout(()=>h.remove(),2400);}
-
-function createFloatingShapes(){
-  for(let i=0;i<15;i++){
-    const s=document.createElement("div");
-    s.className="shape";
-    s.style.left=Math.random()*100+"vw";
-    s.style.top=Math.random()*50+"vh";
-    s.style.width=10+Math.random()*20+"px";
-    s.style.height=10+Math.random()*20+"px";
-    s.style.background=`hsla(${Math.random()*360},70%,80%,0.5)`;
-    s.addEventListener('click',()=>{s.style.transform='scale(1.5)';s.style.opacity='0.8';setTimeout(()=>{s.remove();},600);});
-    body.appendChild(s);
-    setTimeout(()=>s.remove(),10000);
+function typeText(){
+  if(i<mainText.length){
+    mainTextEl.innerHTML+=mainText.charAt(i);
+    i++;
+    setTimeout(typeText,30);
   }
 }
 
-function createStars(){
-  for(let i=0;i<25;i++){
-    const star=document.createElement('div');
-    star.className='star';
-    star.style.left=Math.random()*100+'vw';
-    star.style.animationDuration=4+Math.random()*6+'s';
-    star.style.width=4+Math.random()*8+'px';
-    star.style.height=4+Math.random()*8+'px';
-    document.body.appendChild(star);
-    setTimeout(()=>star.remove(),12000);
+const mainTextEl=document.getElementById("mainText");
+
+function showSecret(){
+  openOverlay("Abang sayang Adee lebih dari apapun 🤍");
+}
+
+function showSorry(){
+  openOverlay(sorryText);
+  rainHearts();
+}
+
+function openOverlay(t){
+  overlayText.innerText=t;
+  overlay.style.display="flex";
+}
+
+function closeOverlay(){
+  overlay.style.display="none";
+  hugEffect();
+}
+
+function rainHearts(){
+  for(let i=0;i<45;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerText="🤍";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=14+Math.random()*22+"px";
+    h.style.animationDuration=3+Math.random()*3+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
   }
 }
-setInterval(createStars,1500);
 
-let bgColors=['linear-gradient(160deg,#0b1d3a,#1a2e4f,#3a4f6f)','linear-gradient(160deg,#081a35,#132b4a,#2f4d6a)','linear-gradient(160deg,#0c203a,#1e3753,#395870)'];
-let bgIndex=0;
-setInterval(()=>{bgIndex=(bgIndex+1)%bgColors.length;body.style.background=bgColors[bgIndex];},15000);
+function hugEffect(){
+  const h=document.createElement("div");
+  h.id="hug";
+  h.innerText="🤍🤗🤍";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),2200);
+}
+
+function createStar(){
+  const star=document.createElement("div");
+  star.className="star";
+  star.style.top=Math.random()*60+"vh";
+  star.style.left=100+Math.random()*30+"vw";
+  star.style.animationDuration=3+Math.random()*2+"s";
+  document.body.appendChild(star);
+  setTimeout(()=>star.remove(),5000);
+}
+
+function startStars(){
+  setInterval(createStar,1200);
+}
 </script>
+
 </body>
 </html>

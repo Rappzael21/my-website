@@ -2,331 +2,186 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adeku Tersayang💞</title>
+<title>Untuk Ade 🤍</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at bottom, #0b1d2a, #020409);
 }
 
-body {
-  margin: 0;
-  background: #000;
-  overflow: hidden;
-  color: #fff;
+/* ===== STAR BACKGROUND ===== */
+.stars{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  z-index:1;
 }
 
-/* ===== BACKGROUND ===== */
-.background {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at bottom, #0a1a2f, #02040a);
-  overflow: hidden;
-  z-index: -2;
+.star{
+  position:absolute;
+  width:2px;
+  height:80px;
+  background:linear-gradient(transparent, rgba(255,255,255,.8));
+  animation: fall linear infinite;
 }
 
-.stars {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+@keyframes fall{
+  from{
+    transform:translateY(-100px) translateX(0);
+    opacity:1;
+  }
+  to{
+    transform:translateY(110vh) translateX(-150px);
+    opacity:0;
+  }
 }
 
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.8;
+/* ===== CONTENT ===== */
+.container{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.shooting-star {
-  position: absolute;
-  width: 120px;
-  height: 2px;
-  background: linear-gradient(90deg, white, transparent);
-  animation: shoot 2s linear infinite;
-  opacity: 0.7;
+.card{
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+  color:white;
+  width:300px;
 }
 
-@keyframes shoot {
-  from { transform: translateX(-150px) translateY(0); }
-  to { transform: translateX(120vw) translateY(300px); }
+.card h1{
+  margin-bottom:20px;
 }
 
-/* ===== MUSIC BUTTON ===== */
-.music-btn {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(6px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.3s;
-  z-index: 10;
+input{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  margin-bottom:15px;
 }
 
-.music-btn:hover {
-  box-shadow: 0 0 12px rgba(255,255,255,0.5);
+button{
+  padding:10px 20px;
+  border:none;
+  border-radius:30px;
+  background:#ff7eb3;
+  color:white;
+  cursor:pointer;
 }
 
-.music-btn.playing {
+/* ===== MUSIC UI ===== */
+.music-ui{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:5;
+  cursor:pointer;
+}
+
+.cassette{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
   animation: spin 3s linear infinite;
+  animation-play-state:paused;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.music-ui.playing .cassette{
+  animation-play-state:running;
 }
 
-/* ===== LOGIN ===== */
-.login {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.login-box {
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-  padding: 28px;
-  border-radius: 16px;
-  width: 90%;
-  max-width: 340px;
-  text-align: center;
-  animation: fadeUp 1s ease;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.login-box input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  margin-top: 16px;
-  text-align: center;
-}
-
-.login-box button {
-  margin-top: 16px;
-  padding: 12px;
-  width: 100%;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  background: #ff7aa2;
-  color: #fff;
-  font-weight: bold;
-}
-
-.shake {
-  animation: shake 0.4s;
-}
-
-@keyframes shake {
-  25% { transform: translateX(-6px); }
-  50% { transform: translateX(6px); }
-  75% { transform: translateX(-6px); }
-}
-
-/* ===== TRANSITION ===== */
-.transition {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  z-index: 20;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.transition.active {
-  animation: curtain 1.5s ease forwards;
-}
-
-@keyframes curtain {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-/* ===== MAIN CONTENT ===== */
-.main {
-  display: none;
-  position: absolute;
-  inset: 0;
-  padding: 24px;
-  overflow-y: auto;
-}
-
-.text-box {
-  background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(6px);
-  padding: 20px;
-  border-radius: 16px;
-  animation: fadeUp 1s ease;
-}
-
-.buttons {
-  margin-top: 20px;
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-}
-
-.btn {
-  padding: 10px 16px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-.btn.left {
-  animation: fromLeft 1s ease forwards;
-}
-
-.btn.right {
-  animation: fromRight 1s ease forwards;
-}
-
-@keyframes fromLeft {
-  from { opacity: 0; transform: translateX(-40px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fromRight {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-/* ===== HUG ===== */
-.hug {
-  font-size: 48px;
-  animation: hugMove 3s ease forwards;
-}
-
-@keyframes hugMove {
-  from { opacity: 0; transform: translateX(-80px); }
-  to { opacity: 1; transform: translateX(0); }
+@keyframes spin{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="background">
-  <div class="stars" id="stars"></div>
+<!-- STAR -->
+<div class="stars" id="stars"></div>
+
+<!-- MUSIC -->
+<div class="music-ui" id="musicBtn">
+  <div class="cassette">🎵</div>
 </div>
 
-<div class="music-btn" id="musicBtn">💿</div>
-<audio id="music" src="music.mp3"></audio>
+<!-- YOUTUBE PLAYER (hidden) -->
+<div id="music" style="display:none"></div>
 
-<div class="login">
-  <div class="login-box" id="loginBox">
-    <h3>Adeku Tersayang</h3>
-    <input id="pw" type="password" placeholder="password">
-    <button onclick="login()">Masuk</button>
+<!-- CONTENT -->
+<div class="container">
+  <div class="card">
+    <h1>Hai Ade 🤍</h1>
+    <input type="password" placeholder="Password">
+    <button>Masuk</button>
   </div>
 </div>
 
-<div class="transition" id="transition"></div>
-
-<div class="main" id="main">
-  <div class="text-box" id="mainText"></div>
-
-  <div class="buttons">
-    <button class="btn left">Pesan Rahasia</button>
-    <button class="btn right">Abang Mau Ngomong</button>
-  </div>
-
-  <div class="hug">🤍🤗🤍</div>
-</div>
+<!-- YOUTUBE API -->
+<script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
-/* STARS */
+/* ===== STAR GENERATOR ===== */
 const stars = document.getElementById("stars");
-for(let i=0;i<80;i++){
-  const s = document.createElement("div");
+for(let i=0;i<40;i++){
+  const s=document.createElement("div");
   s.className="star";
   s.style.left=Math.random()*100+"%";
-  s.style.top=Math.random()*100+"%";
+  s.style.animationDuration=5+Math.random()*5+"s";
+  s.style.animationDelay=Math.random()*5+"s";
   stars.appendChild(s);
 }
-for(let i=0;i<6;i++){
-  const sh = document.createElement("div");
-  sh.className="shooting-star";
-  sh.style.top=Math.random()*50+"%";
-  sh.style.animationDelay=Math.random()*4+"s";
-  stars.appendChild(sh);
+
+/* ===== YOUTUBE PLAYER ===== */
+let player;
+function onYouTubeIframeAPIReady(){
+  player=new YT.Player('music',{
+    height:'0',
+    width:'0',
+    videoId:'Q49pnA4jsp8', // WAVE TO EARTH - LOVE
+    playerVars:{
+      autoplay:0,
+      controls:0,
+      loop:1,
+      playlist:'Q49pnA4jsp8'
+    }
+  });
 }
 
-/* MUSIC */
 const musicBtn=document.getElementById("musicBtn");
-const music=document.getElementById("music");
-let playing=false;
 musicBtn.onclick=()=>{
-  if(!playing){
-    music.play();
+  if(!player) return;
+  const state=player.getPlayerState();
+  if(state!==1){
+    player.playVideo();
     musicBtn.classList.add("playing");
-  } else {
-    music.pause();
+  }else{
+    player.pauseVideo();
     musicBtn.classList.remove("playing");
   }
-  playing=!playing;
 };
-
-/* LOGIN */
-let fail=0;
-function login(){
-  const pw=document.getElementById("pw").value;
-  const box=document.getElementById("loginBox");
-  if(pw==="ade"){
-    document.getElementById("transition").classList.add("active");
-    setTimeout(()=>{
-      document.querySelector(".login").style.display="none";
-      document.getElementById("main").style.display="block";
-      typeText();
-    },900);
-  } else {
-    fail++;
-    box.classList.add("shake");
-    setTimeout(()=>box.classList.remove("shake"),400);
-    if(fail>=3) alert("clue: tanggal lahir orang yang paling abang sayang 😉");
-  }
-}
-
-/* TYPE TEXT */
-const text = `ade sayang, abang minta maaf yaa,
-hari hari ade jadi jelek terus karen abang,
-dan karena ke egoisan abang pula kita jadi renggang kaya sekarang,
-abang minta maaf atas segala hal yang uddaa aang perbuat ke ade,
-abang cuma mau ade tau satu hal bahwa abang selalu mencintai ade
-kapanpun dan dimanapun.
-maafin abang ya adee.
-abang mau ade kembali di sisi abang`;
-
-let i=0;
-function typeText(){
-  const el=document.getElementById("mainText");
-  if(i<text.length){
-    el.innerHTML+=text[i];
-    el.scrollTop=el.scrollHeight;
-    i++;
-    setTimeout(typeText,35);
-  }
-}
 </script>
 
 </body>

@@ -2,179 +2,328 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Untuk Ade 🤍</title>
 
 <style>
-html,body{
-  margin:0;
-  padding:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  font-family: 'Segoe UI', sans-serif;
-  background: radial-gradient(circle at bottom, #0b1d2a, #020409);
+*{box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+
+body{
+  margin:0;height:100vh;overflow:hidden;
+  background:linear-gradient(180deg,#0b132b,#1c2541,#3a506b);
+  display:flex;justify-content:center;align-items:center;
+  color:#fff;
 }
 
 /* ===== STAR BACKGROUND ===== */
-.stars{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  z-index:1;
-}
-
 .star{
-  position:absolute;
-  width:2px;
-  height:80px;
-  background:linear-gradient(transparent, rgba(255,255,255,.8));
-  animation: fall linear infinite;
+  position:fixed;
+  width:2px;height:2px;
+  background:white;
+  border-radius:50%;
+  opacity:.8;
+  animation:fall linear infinite;
 }
-
 @keyframes fall{
-  from{
-    transform:translateY(-100px) translateX(0);
-    opacity:1;
-  }
-  to{
-    transform:translateY(110vh) translateX(-150px);
-    opacity:0;
-  }
+  from{transform:translateY(-10vh)}
+  to{transform:translateY(110vh)}
 }
 
-/* ===== CONTENT ===== */
+/* ===== CONTAINER ===== */
 .container{
+  width:100%;max-width:720px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);
+  border-radius:22px;
+  padding:24px;
+  text-align:center;
+  box-shadow:0 30px 60px rgba(0,0,0,.35);
   position:relative;
   z-index:2;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
-.card{
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(12px);
-  padding:40px;
-  border-radius:20px;
-  text-align:center;
-  color:white;
-  width:300px;
+/* ===== LOGIN ===== */
+#loginBox{
+  animation:fadeIn 1s ease;
 }
-
-.card h1{
-  margin-bottom:20px;
-}
-
 input{
-  width:100%;
-  padding:10px;
-  border-radius:10px;
+  padding:14px 18px;
+  border-radius:30px;
+  border:none;outline:none;
+  font-size:16px;
+  text-align:center;
+  width:260px;
+}
+button{
+  margin-top:14px;
+  padding:12px 30px;
+  border-radius:30px;
   border:none;
-  outline:none;
-  margin-bottom:15px;
+  background:#ff6b81;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+  transition:.3s;
+}
+button:hover{transform:scale(1.08)}
+.shake{animation:shake .4s}
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-5px)}
+  50%{transform:translateX(5px)}
+  75%{transform:translateX(-5px)}
+  100%{transform:translateX(0)}
+}
+#errorMsg{color:#ffd1dc;margin-top:10px}
+
+/* ===== CONTENT ===== */
+#content{display:none}
+.text-box{
+  max-height:45vh;
+  overflow-y:auto;
+  padding-right:6px;
+}
+p{
+  line-height:1.8;
+  font-size:17px;
+  white-space:pre-line;
 }
 
-button{
-  padding:10px 20px;
-  border:none;
-  border-radius:30px;
-  background:#ff7eb3;
-  color:white;
-  cursor:pointer;
+/* ===== ACTION BUTTONS ===== */
+.actions{
+  margin-top:20px;
+}
+.action-btn{
+  margin:8px;
+  animation:fadeUp .8s ease forwards;
+  opacity:0;
+}
+.action-btn:nth-child(1){animation-delay:.3s}
+.action-btn:nth-child(2){animation-delay:.6s}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateX(-20px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* ===== OVERLAY ===== */
+#overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.65);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+}
+.overlay-box{
+  max-width:600px;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(12px);
+  border-radius:22px;
+  padding:26px;
+  animation:zoomIn .8s ease;
+}
+@keyframes zoomIn{
+  from{opacity:0;transform:scale(.8)}
+  to{opacity:1;transform:scale(1)}
+}
+
+/* ===== HUG EMOJI ===== */
+#hug{
+  position:fixed;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  font-size:52px;
+  animation:hugSide 2.2s ease forwards;
+  pointer-events:none;
+  z-index:12;
+}
+@keyframes hugSide{
+  0%{opacity:0;transform:translate(-80%,-50%) scale(.6)}
+  50%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}
+  100%{opacity:0;transform:translate(-20%,-50%) scale(.9)}
 }
 
 /* ===== MUSIC UI ===== */
-.music-ui{
+#musicBtn{
   position:fixed;
-  top:20px;
-  right:20px;
-  z-index:5;
-  cursor:pointer;
-}
-
-.cassette{
-  width:50px;
-  height:50px;
+  top:18px;right:18px;
+  width:64px;height:64px;
   border-radius:50%;
-  background:#111;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(8px);
   display:flex;
-  align-items:center;
   justify-content:center;
-  color:white;
-  animation: spin 3s linear infinite;
-  animation-play-state:paused;
+  align-items:center;
+  cursor:pointer;
+  box-shadow:0 0 0 rgba(255,255,255,0);
+  transition:.4s;
+  z-index:20;
 }
-
-.music-ui.playing .cassette{
-  animation-play-state:running;
+#musicBtn.playing{
+  box-shadow:0 0 25px rgba(255,255,255,.7);
 }
-
+#musicBtn span{
+  font-size:30px;
+  animation:spin 2.5s linear infinite;
+}
+#musicBtn:not(.playing) span{animation:none}
 @keyframes spin{
-  from{transform:rotate(0deg);}
-  to{transform:rotate(360deg);}
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
 }
 </style>
 </head>
 
 <body>
 
-<!-- STAR -->
-<div class="stars" id="stars"></div>
+<div id="musicBtn"><span>💿</span></div>
 
-<!-- MUSIC -->
-<div class="music-ui" id="musicBtn">
-  <div class="cassette">🎵</div>
+<div class="container">
+
+  <div id="loginBox">
+    <h1>Masuk dulu yyaa ade 🤍</h1>
+    <input type="password" id="passwordInput" placeholder="Adeku Tersayang">
+    <br>
+    <button id="loginBtn">Masuk 💌</button>
+    <p id="errorMsg"></p>
+  </div>
+
+  <div id="content">
+    <h1>Selamat datang di halaman khusus adee ✨</h1>
+    <div class="text-box">
+      <p id="mainText"></p>
+    </div>
+    <div class="actions">
+      <button class="action-btn" onclick="showSecret()">Pesan Rahasia 💌</button>
+      <button class="action-btn" onclick="showSorry()">Abang Mau Ngomong 🥺</button>
+    </div>
+  </div>
+
 </div>
 
-<!-- YOUTUBE PLAYER (hidden) -->
-<div id="music" style="display:none"></div>
-
-<!-- CONTENT -->
-<div class="container">
-  <div class="card">
-    <h1>Hai Ade 🤍</h1>
-    <input type="password" placeholder="Password">
-    <button>Masuk</button>
+<div id="overlay">
+  <div class="overlay-box">
+    <p id="overlayText"></p>
+    <button onclick="closeOverlay()">Peluk Ade 🤍</button>
   </div>
 </div>
 
-<!-- YOUTUBE API -->
-<script src="https://www.youtube.com/iframe_api"></script>
+<!-- YOUTUBE -->
+<div id="music" style="display:none"></div>
 
 <script>
 /* ===== STAR GENERATOR ===== */
-const stars = document.getElementById("stars");
-for(let i=0;i<40;i++){
+for(let i=0;i<120;i++){
   const s=document.createElement("div");
   s.className="star";
-  s.style.left=Math.random()*100+"%";
+  s.style.left=Math.random()*100+"vw";
   s.style.animationDuration=5+Math.random()*5+"s";
-  s.style.animationDelay=Math.random()*5+"s";
-  stars.appendChild(s);
+  s.style.opacity=Math.random();
+  document.body.appendChild(s);
 }
 
-/* ===== YOUTUBE PLAYER ===== */
+/* ===== PASSWORD ===== */
+const PASSWORD="21052005";
+
+/* ===== TEXT ===== */
+const mainText=`
+Hai Adee,
+
+mungkin ini cuma website sederhana,
+tapi setiap barisnya abang bikin sambil mikirin ade.
+
+Terima kasih sudah hadir di hidup abang,
+jadi alasan senyum abang,
+jadi tempat pulang,
+dan jadi orang yang selalu abang sayang.
+
+Abang sayang ade hari ini,
+besok,
+dan selamanya.
+`;
+
+const sorryText=`
+ade sayang, abang minta maaf yaa,
+hari hari ade jadi jelek terus karena abang,
+dan karena keegoisan abang pula kita jadi renggang kaya sekarang.
+
+abang minta maaf atas segala hal yang udah abang perbuat ke ade.
+abang cuma mau ade tau satu hal,
+abang selalu mencintai ade kapanpun dan dimanapun.
+
+maafin abang ya adee,
+abang mau ade kembali di sisi abang.
+`;
+
+let i=0;
+const mainTextEl=document.getElementById("mainText");
+
+/* ===== LOGIN ===== */
+document.getElementById("loginBtn").onclick=()=>{
+  if(passwordInput.value===PASSWORD){
+    loginBox.style.display="none";
+    content.style.display="block";
+    typeText();
+  }else{
+    errorMsg.innerText="hayooo masa tanggal lahir ade ngga inget hehe 🤍";
+    loginBtn.classList.add("shake");
+    setTimeout(()=>loginBtn.classList.remove("shake"),400);
+  }
+};
+
+function typeText(){
+  if(i<mainText.length){
+    mainTextEl.innerHTML+=mainText.charAt(i);
+    mainTextEl.parentElement.scrollTop=mainTextEl.parentElement.scrollHeight;
+    i++;setTimeout(typeText,30);
+  }
+}
+
+/* ===== OVERLAY ===== */
+function showSecret(){
+  openOverlay("Abang sayang Adee lebih dari apapun 🤍");
+}
+function showSorry(){
+  openOverlay(sorryText);
+}
+function openOverlay(t){
+  overlayText.innerText=t;
+  overlay.style.display="flex";
+}
+function closeOverlay(){
+  overlay.style.display="none";
+  hug();
+}
+function hug(){
+  const h=document.createElement("div");
+  h.id="hug";
+  h.innerText="🤍🤗🤍";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),2200);
+}
+
+/* ===== MUSIC ===== */
+let tag=document.createElement("script");
+tag.src="https://www.youtube.com/iframe_api";
+document.body.appendChild(tag);
+
 let player;
 function onYouTubeIframeAPIReady(){
-  player=new YT.Player('music',{
-    height:'0',
-    width:'0',
-    videoId:'Q49pnA4jsp8', // WAVE TO EARTH - LOVE
-    playerVars:{
-      autoplay:0,
-      controls:0,
-      loop:1,
-      playlist:'Q49pnA4jsp8'
-    }
+  player=new YT.Player("music",{
+    videoId:"Q49pnA4jsp8",
+    playerVars:{controls:0}
   });
 }
 
 const musicBtn=document.getElementById("musicBtn");
 musicBtn.onclick=()=>{
   if(!player) return;
-  const state=player.getPlayerState();
-  if(state!==1){
+  if(player.getPlayerState()!==1){
     player.playVideo();
     musicBtn.classList.add("playing");
   }else{

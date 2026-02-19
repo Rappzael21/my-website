@@ -29,6 +29,25 @@ body{
   to{transform:translateY(110vh)}
 }
 
+/* ===== LOGIN TRANSITION LAYERS ===== */
+#transition{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at center,#ffffff22,#000000dd);
+  backdrop-filter:blur(0);
+  display:none;
+  z-index:50;
+}
+#transition.active{
+  animation:luxIn 1.6s ease forwards;
+}
+@keyframes luxIn{
+  0%{opacity:0;backdrop-filter:blur(0)}
+  40%{opacity:1;backdrop-filter:blur(4px)}
+  70%{opacity:1;backdrop-filter:blur(12px)}
+  100%{opacity:0;backdrop-filter:blur(0)}
+}
+
 /* ===== CONTAINER ===== */
 .container{
   width:100%;max-width:720px;

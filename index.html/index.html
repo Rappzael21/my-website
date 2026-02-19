@@ -3,308 +3,331 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Untuk Adee ❤️</title>
+<title>Adeku Tersayang💞</title>
 
 <style>
-*{box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{
-  margin:0;height:100vh;overflow:hidden;
-  background:#020617;
-  display:flex;justify-content:center;align-items:center;
-  color:#fff;
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* ===== BACKGROUND LAYER ===== */
-#bg{
-  position:fixed;inset:0;
-  background-size:cover;
-  background-position:center;
-  transition:opacity 2s ease, transform 10s ease;
-  z-index:-5;
-}
-#bg.fade{opacity:0;transform:scale(1.05)}
-
-.star{
-  position:fixed;
-  width:2px;height:2px;
-  background:white;
-  opacity:.8;
-  z-index:-4;
-}
-.shooting{
-  position:fixed;
-  width:80px;height:2px;
-  background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.8));
-  animation:shoot 1.5s linear forwards;
-  z-index:-4;
-}
-@keyframes shoot{
-  from{transform:translate(0,0)}
-  to{transform:translate(-300px,300px);opacity:0}
+body {
+  margin: 0;
+  background: #000;
+  overflow: hidden;
+  color: #fff;
 }
 
-/* ===== CONTAINER ===== */
-.container{
-  width:100%;max-width:720px;
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(10px);
-  border-radius:22px;
-  padding:24px;
-  text-align:center;
-  box-shadow:0 25px 50px rgba(0,0,0,.35);
-  position:relative;
+/* ===== BACKGROUND ===== */
+.background {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at bottom, #0a1a2f, #02040a);
+  overflow: hidden;
+  z-index: -2;
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, white, transparent);
+  animation: shoot 2s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes shoot {
+  from { transform: translateX(-150px) translateY(0); }
+  to { transform: translateX(120vw) translateY(300px); }
+}
+
+/* ===== MUSIC BUTTON ===== */
+.music-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 10;
+}
+
+.music-btn:hover {
+  box-shadow: 0 0 12px rgba(255,255,255,0.5);
+}
+
+.music-btn.playing {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* ===== LOGIN ===== */
-#loginBox{text-align:center}
-input{
-  padding:14px 18px;border-radius:30px;border:none;
-  font-size:16px;text-align:center;width:240px;
+.login {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-button{
-  margin-top:14px;padding:14px 32px;border-radius:32px;
-  border:none;background:#ff4d6d;color:#fff;
-  font-size:15px;cursor:pointer;
-  transition:.3s;
+
+.login-box {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  padding: 28px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 340px;
+  text-align: center;
+  animation: fadeUp 1s ease;
 }
-button:hover{transform:scale(1.08)}
-.shake{animation:shake .4s}
-@keyframes shake{
-  0%{transform:translateX(0)}
-  25%{transform:translateX(-6px)}
-  50%{transform:translateX(6px)}
-  75%{transform:translateX(-6px)}
-  100%{transform:translateX(0)}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-#errorMsg{margin-top:10px;color:#ffd1dc}
+
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.login-box button {
+  margin-top: 16px;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #ff7aa2;
+  color: #fff;
+  font-weight: bold;
+}
+
+.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-6px); }
+}
 
 /* ===== TRANSITION ===== */
-#portal{
-  position:fixed;inset:0;
-  background:radial-gradient(circle at center,rgba(180,200,255,.8),rgba(0,0,0,.9));
-  opacity:0;pointer-events:none;
-  transition:opacity 1.2s ease;
-  z-index:5;
+.transition {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
 }
 
-/* ===== CONTENT ===== */
-#content{display:none}
-.text-box{
-  max-height:45vh;
-  overflow-y:auto;
-  padding-right:6px;
-}
-p{white-space:pre-line;line-height:1.7;font-size:17px}
-
-/* ===== BUTTON ANIM ===== */
-.action{opacity:0}
-.from-left{animation:fromLeft .8s ease forwards}
-.from-right{animation:fromRight .8s ease forwards}
-@keyframes fromLeft{
-  from{opacity:0;transform:translateX(-30px)}
-  to{opacity:1;transform:translateX(0)}
-}
-@keyframes fromRight{
-  from{opacity:0;transform:translateX(30px)}
-  to{opacity:1;transform:translateX(0)}
+.transition.active {
+  animation: curtain 1.5s ease forwards;
 }
 
-/* ===== OVERLAY ===== */
-#overlay{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.7);
-  display:none;
-  justify-content:center;align-items:center;
-  z-index:10;
+@keyframes curtain {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
-.overlay-box{
-  max-width:600px;
-  background:rgba(255,255,255,.15);
-  backdrop-filter:blur(10px);
-  border-radius:22px;
-  padding:26px;
-  animation:fadeUp .8s ease;
+
+/* ===== MAIN CONTENT ===== */
+.main {
+  display: none;
+  position: absolute;
+  inset: 0;
+  padding: 24px;
+  overflow-y: auto;
 }
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
+
+.text-box {
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  padding: 20px;
+  border-radius: 16px;
+  animation: fadeUp 1s ease;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.left {
+  animation: fromLeft 1s ease forwards;
+}
+
+.btn.right {
+  animation: fromRight 1s ease forwards;
+}
+
+@keyframes fromLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fromRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 /* ===== HUG ===== */
-#hug{
-  position:fixed;
-  left:50%;top:50%;
-  transform:translate(-50%,-50%);
-  font-size:48px;
-  animation:hugAnim 2s ease forwards;
-  z-index:12;
+.hug {
+  font-size: 48px;
+  animation: hugMove 3s ease forwards;
 }
-@keyframes hugAnim{
-  0%{opacity:0;transform:translate(-50%,-50%) translateX(-30px) scale(.7)}
-  50%{opacity:1;transform:translate(-50%,-50%) translateX(0) scale(1)}
-  100%{opacity:0;transform:translate(-50%,-50%) translateX(30px) scale(.8)}
+
+@keyframes hugMove {
+  from { opacity: 0; transform: translateX(-80px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 </style>
 </head>
+
 <body>
 
-<div id="bg"></div>
-<div id="portal"></div>
+<div class="background">
+  <div class="stars" id="stars"></div>
+</div>
 
-<div class="container">
-  <div id="loginBox">
-    <h1>Masuk dulu yyaa Adee ❤️</h1>
-    <input type="password" id="pw" placeholder="Adeku Tersayang">
-    <br>
-    <button id="loginBtn">Masuk 💌</button>
-    <p id="errorMsg"></p>
-  </div>
+<div class="music-btn" id="musicBtn">💿</div>
+<audio id="music" src="music.mp3"></audio>
 
-  <div id="content">
-    <h1>Hai Adee 💖</h1>
-    <div class="text-box" id="box">
-      <p id="mainText"></p>
-    </div>
-    <button class="action from-left" id="secretBtn">Pesan Rahasia 💌</button>
-    <button class="action from-right" id="sorryBtn">Abang Mau Ngomong 🥺</button>
+<div class="login">
+  <div class="login-box" id="loginBox">
+    <h3>Adeku Tersayang</h3>
+    <input id="pw" type="password" placeholder="password">
+    <button onclick="login()">Masuk</button>
   </div>
 </div>
 
-<div id="overlay">
-  <div class="overlay-box">
-    <p id="overlayText"></p>
-    <button onclick="closeOverlay()">Peluk dari jauh 🤍</button>
-  </div>
-</div>
+<div class="transition" id="transition"></div>
 
-<!-- MUSIC -->
-<iframe id="music" width="0" height="0" src="" allow="autoplay"></iframe>
+<div class="main" id="main">
+  <div class="text-box" id="mainText"></div>
+
+  <div class="buttons">
+    <button class="btn left">Pesan Rahasia</button>
+    <button class="btn right">Abang Mau Ngomong</button>
+  </div>
+
+  <div class="hug">🤍🤗🤍</div>
+</div>
 
 <script>
-const PASSWORD="21052005";
-const bgImages=[
- "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
- "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
- "https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
-];
-let bgIndex=0;
-const bg=document.getElementById("bg");
-bg.style.backgroundImage=`url(${bgImages[0]})`;
-
-setInterval(()=>{
-  bg.classList.add("fade");
-  setTimeout(()=>{
-    bgIndex=(bgIndex+1)%bgImages.length;
-    bg.style.backgroundImage=`url(${bgImages[bgIndex]})`;
-    bg.classList.remove("fade");
-  },2000);
-},9000);
-
-/* stars */
+/* STARS */
+const stars = document.getElementById("stars");
 for(let i=0;i<80;i++){
-  const s=document.createElement("div");
+  const s = document.createElement("div");
   s.className="star";
-  s.style.left=Math.random()*100+"vw";
-  s.style.top=Math.random()*100+"vh";
-  document.body.appendChild(s);
+  s.style.left=Math.random()*100+"%";
+  s.style.top=Math.random()*100+"%";
+  stars.appendChild(s);
 }
-setInterval(()=>{
-  for(let i=0;i<4;i++){
-    const sh=document.createElement("div");
-    sh.className="shooting";
-    sh.style.left=Math.random()*100+"vw";
-    sh.style.top=Math.random()*50+"vh";
-    document.body.appendChild(sh);
-    setTimeout(()=>sh.remove(),1500);
-  }
-},3000);
+for(let i=0;i<6;i++){
+  const sh = document.createElement("div");
+  sh.className="shooting-star";
+  sh.style.top=Math.random()*50+"%";
+  sh.style.animationDelay=Math.random()*4+"s";
+  stars.appendChild(sh);
+}
 
-/* login */
-let tries=0;
-loginBtn.onclick=()=>{
-  if(pw.value===PASSWORD){
-    portal.style.opacity=1;
-    setTimeout(()=>{
-      loginBox.style.display="none";
-      content.style.display="block";
-      portal.style.opacity=0;
-      music.src="https://www.youtube.com/embed/7Zhc0eZ2hX8?autoplay=1";
-      typeText();
-    },1500);
-  }else{
-    tries++;
-    loginBox.classList.add("shake");
-    setTimeout(()=>loginBox.classList.remove("shake"),400);
-    errorMsg.innerText=tries>=3?"Clue: tanggal paling penting buat abang 😜":"hayooo masa tanggal lahir ade ngga inget hehe, coba lagi sayangku";
+/* MUSIC */
+const musicBtn=document.getElementById("musicBtn");
+const music=document.getElementById("music");
+let playing=false;
+musicBtn.onclick=()=>{
+  if(!playing){
+    music.play();
+    musicBtn.classList.add("playing");
+  } else {
+    music.pause();
+    musicBtn.classList.remove("playing");
   }
+  playing=!playing;
 };
 
-/* text */
-const mainText=`Hai Adee,
+/* LOGIN */
+let fail=0;
+function login(){
+  const pw=document.getElementById("pw").value;
+  const box=document.getElementById("loginBox");
+  if(pw==="ade"){
+    document.getElementById("transition").classList.add("active");
+    setTimeout(()=>{
+      document.querySelector(".login").style.display="none";
+      document.getElementById("main").style.display="block";
+      typeText();
+    },900);
+  } else {
+    fail++;
+    box.classList.add("shake");
+    setTimeout(()=>box.classList.remove("shake"),400);
+    if(fail>=3) alert("clue: tanggal lahir orang yang paling abang sayang 😉");
+  }
+}
 
-mungkin ini cuma website sederhana,
-tapi setiap barisnya abang bikin sambil mikirin adee sayang.
-
-Terima kasih sudah hadir di hidup abang,
-jadi alasan senyum abang,
-jadi tempat pulang,
-dan jadi orang yang selalu abang sayang dan abang cintai setiap hari.
-
-Abang nggak janji sempurna,
-tapi abang janji selalu berusaha buat jadi yang terbaik untuk ade,
-dengerin ade,
-dukung ade,
-dan hidup bareng ade sejauh yang kita bisa.
-
-Ade itu berharga,
-ade itu istimewa,
-dan abang bersyukur bisa milikin ade sayang.
-
-abang sayang ade hari ini,
-besok,
-seterusnya,
-dan selamanya.`;
+/* TYPE TEXT */
+const text = `ade sayang, abang minta maaf yaa,
+hari hari ade jadi jelek terus karen abang,
+dan karena ke egoisan abang pula kita jadi renggang kaya sekarang,
+abang minta maaf atas segala hal yang uddaa aang perbuat ke ade,
+abang cuma mau ade tau satu hal bahwa abang selalu mencintai ade
+kapanpun dan dimanapun.
+maafin abang ya adee.
+abang mau ade kembali di sisi abang`;
 
 let i=0;
 function typeText(){
-  if(i<mainText.length){
-    mainTextEl.innerHTML+=mainText.charAt(i);
-    box.scrollTop=box.scrollHeight;
-    i++;setTimeout(typeText,28);
-  }else{
-    secretBtn.style.opacity=1;
-    sorryBtn.style.opacity=1;
+  const el=document.getElementById("mainText");
+  if(i<text.length){
+    el.innerHTML+=text[i];
+    el.scrollTop=el.scrollHeight;
+    i++;
+    setTimeout(typeText,35);
   }
 }
-
-/* overlay */
-const sorryText=`ade sayang,
-abang minta maaf yaa...
-abang sadar banyak salah,
-dan ego abang bikin ade sakit.
-
-abang cuma mau ade tau,
-abang selalu mencintai ade,
-kapanpun dan dimanapun.
-
-maafin abang ya adee,
-abang mau ade kembali di sisi abang.`;
-
-secretBtn.onclick=()=>openOverlay("Abang sayang Adee selamanya ❤️");
-sorryBtn.onclick=()=>openOverlay(sorryText);
-
-function openOverlay(t){
-  overlayText.innerText=t;
-  overlay.style.display="flex";
-}
-function closeOverlay(){
-  overlay.style.display="none";
-  const h=document.createElement("div");
-  h.id="hug";
-  h.innerText="🤍🤗🤍";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),2000);
-}
 </script>
+
 </body>
 </html>

@@ -3,170 +3,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Untuk Adee ✨</title>
+<title>Untuk Adee ❤️</title>
 
 <style>
 *{box-sizing:border-box;font-family:'Segoe UI',sans-serif}
 body{
   margin:0;height:100vh;overflow:hidden;
-  background:radial-gradient(circle at bottom,#0b1d3a,#020111);
+  background:#020617;
   display:flex;justify-content:center;align-items:center;
   color:#fff;
 }
 
-/* ===== STAR BACKGROUND ===== */
+/* ===== BACKGROUND LAYER ===== */
+#bg{
+  position:fixed;inset:0;
+  background-size:cover;
+  background-position:center;
+  transition:opacity 2s ease, transform 10s ease;
+  z-index:-5;
+}
+#bg.fade{opacity:0;transform:scale(1.05)}
+
 .star{
   position:fixed;
   width:2px;height:2px;
   background:white;
-  border-radius:50%;
   opacity:.8;
+  z-index:-4;
 }
 .shooting{
   position:fixed;
-  width:120px;height:2px;
-  background:linear-gradient(90deg,white,transparent);
-  opacity:.8;
-  animation:shoot 2.5s linear infinite;
+  width:80px;height:2px;
+  background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.8));
+  animation:shoot 1.5s linear forwards;
+  z-index:-4;
 }
 @keyframes shoot{
-  from{transform:translateX(0) translateY(0)}
-  to{transform:translateX(-600px) translateY(300px);opacity:0}
+  from{transform:translate(0,0)}
+  to{transform:translate(-300px,300px);opacity:0}
 }
 
-/* ===== LOGIN LAYER ===== */
-.login-layer{
-  position:absolute;inset:0;
-  display:flex;justify-content:center;align-items:center;
-  z-index:5;
-}
-.login-box{
+/* ===== CONTAINER ===== */
+.container{
+  width:100%;max-width:720px;
   background:rgba(255,255,255,.12);
   backdrop-filter:blur(10px);
-  padding:30px;
-  border-radius:20px;
+  border-radius:22px;
+  padding:24px;
   text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,.4);
-  animation:fadeUp .9s ease;
-}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
+  box-shadow:0 25px 50px rgba(0,0,0,.35);
+  position:relative;
 }
 
+/* ===== LOGIN ===== */
+#loginBox{text-align:center}
 input{
-  padding:12px 16px;border-radius:25px;border:none;
-  outline:none;font-size:16px;text-align:center;width:240px;
+  padding:14px 18px;border-radius:30px;border:none;
+  font-size:16px;text-align:center;width:240px;
 }
 button{
-  margin-top:15px;padding:12px 30px;border-radius:30px;
-  border:none;background:#ff5f7e;color:#fff;
-  font-size:16px;cursor:pointer;
+  margin-top:14px;padding:14px 32px;border-radius:32px;
+  border:none;background:#ff4d6d;color:#fff;
+  font-size:15px;cursor:pointer;
   transition:.3s;
 }
 button:hover{transform:scale(1.08)}
-
 .shake{animation:shake .4s}
 @keyframes shake{
   0%{transform:translateX(0)}
   25%{transform:translateX(-6px)}
   50%{transform:translateX(6px)}
-  75%{transform:translateX(-4px)}
+  75%{transform:translateX(-6px)}
   100%{transform:translateX(0)}
 }
-
-#error{
-  color:#ff9aa9;
-  margin-top:10px;
-  animation:fadeUp .4s;
-  font-size:14px;
-}
+#errorMsg{margin-top:10px;color:#ffd1dc}
 
 /* ===== TRANSITION ===== */
-#transition{
+#portal{
   position:fixed;inset:0;
-  background:#020111;
-  display:none;
-  z-index:9;
-}
-.layer{
-  position:absolute;inset:0;
-}
-.layer.one{background:radial-gradient(circle,#1b3b6f,#020111)}
-.layer.two{
-  background:linear-gradient(135deg,#020111,#000);
-  animation:layerMove 1.6s ease forwards;
-}
-@keyframes layerMove{
-  from{transform:scale(1.4);opacity:0}
-  to{transform:scale(1);opacity:1}
+  background:radial-gradient(circle at center,rgba(180,200,255,.8),rgba(0,0,0,.9));
+  opacity:0;pointer-events:none;
+  transition:opacity 1.2s ease;
+  z-index:5;
 }
 
 /* ===== CONTENT ===== */
-#content{
-  display:none;
-  z-index:2;
-  width:100%;
-  max-width:720px;
-  padding:20px;
-}
-.content-box{
-  background:rgba(255,255,255,.14);
-  backdrop-filter:blur(8px);
-  border-radius:20px;
-  padding:25px;
-  text-align:center;
-  animation:fadeUp 1s ease;
-}
+#content{display:none}
 .text-box{
-  max-height:45vh;overflow-y:auto;
+  max-height:45vh;
+  overflow-y:auto;
+  padding-right:6px;
 }
-p{
-  line-height:1.7;font-size:17px;
-  white-space:pre-line;
+p{white-space:pre-line;line-height:1.7;font-size:17px}
+
+/* ===== BUTTON ANIM ===== */
+.action{opacity:0}
+.from-left{animation:fromLeft .8s ease forwards}
+.from-right{animation:fromRight .8s ease forwards}
+@keyframes fromLeft{
+  from{opacity:0;transform:translateX(-30px)}
+  to{opacity:1;transform:translateX(0)}
 }
-.action{
-  margin-top:15px;
-  display:none;
-}
-.action button{
-  margin:8px;
-  animation:pulse 1.6s infinite;
-}
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.07)}
-  100%{transform:scale(1)}
+@keyframes fromRight{
+  from{opacity:0;transform:translateX(30px)}
+  to{opacity:1;transform:translateX(0)}
 }
 
 /* ===== OVERLAY ===== */
 #overlay{
   position:fixed;inset:0;
-  background:rgba(0,0,0,.65);
+  background:rgba(0,0,0,.7);
   display:none;
-  justify-content:center;
-  align-items:center;
+  justify-content:center;align-items:center;
   z-index:10;
 }
 .overlay-box{
+  max-width:600px;
   background:rgba(255,255,255,.15);
   backdrop-filter:blur(10px);
-  padding:25px;
-  border-radius:20px;
-  max-width:600px;
-  text-align:center;
+  border-radius:22px;
+  padding:26px;
   animation:fadeUp .8s ease;
 }
-
-/* ===== HEART RAIN ===== */
-.heart{
-  position:fixed;
-  animation:fall linear forwards;
-  pointer-events:none;
-}
-@keyframes fall{
-  from{transform:translateY(-10vh);opacity:1}
-  to{transform:translateY(110vh);opacity:0}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
 /* ===== HUG ===== */
@@ -174,85 +135,112 @@ p{
   position:fixed;
   left:50%;top:50%;
   transform:translate(-50%,-50%);
-  font-size:64px;
-  animation:hugSide 2.4s ease forwards;
-  z-index:11;
+  font-size:48px;
+  animation:hugAnim 2s ease forwards;
+  z-index:12;
 }
-@keyframes hugSide{
-  0%{opacity:0;transform:translate(-50%,-50%) translateX(-40px) scale(.7)}
-  40%{opacity:1;transform:translate(-50%,-50%) translateX(0) scale(1.1)}
-  70%{opacity:1;transform:translate(-50%,-50%) translateX(15px) scale(1)}
-  100%{opacity:0;transform:translate(-50%,-50%) translateX(40px) scale(.85)}
+@keyframes hugAnim{
+  0%{opacity:0;transform:translate(-50%,-50%) translateX(-30px) scale(.7)}
+  50%{opacity:1;transform:translate(-50%,-50%) translateX(0) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-50%) translateX(30px) scale(.8)}
 }
 </style>
 </head>
 <body>
 
-<!-- STARS -->
+<div id="bg"></div>
+<div id="portal"></div>
+
+<div class="container">
+  <div id="loginBox">
+    <h1>Masuk dulu yyaa Adee ❤️</h1>
+    <input type="password" id="pw" placeholder="Adeku Tersayang">
+    <br>
+    <button id="loginBtn">Masuk 💌</button>
+    <p id="errorMsg"></p>
+  </div>
+
+  <div id="content">
+    <h1>Hai Adee 💖</h1>
+    <div class="text-box" id="box">
+      <p id="mainText"></p>
+    </div>
+    <button class="action from-left" id="secretBtn">Pesan Rahasia 💌</button>
+    <button class="action from-right" id="sorryBtn">Abang Mau Ngomong 🥺</button>
+  </div>
+</div>
+
+<div id="overlay">
+  <div class="overlay-box">
+    <p id="overlayText"></p>
+    <button onclick="closeOverlay()">Peluk dari jauh 🤍</button>
+  </div>
+</div>
+
+<!-- MUSIC -->
+<iframe id="music" width="0" height="0" src="" allow="autoplay"></iframe>
+
 <script>
+const PASSWORD="21052005";
+const bgImages=[
+ "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+ "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+ "https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
+];
+let bgIndex=0;
+const bg=document.getElementById("bg");
+bg.style.backgroundImage=`url(${bgImages[0]})`;
+
+setInterval(()=>{
+  bg.classList.add("fade");
+  setTimeout(()=>{
+    bgIndex=(bgIndex+1)%bgImages.length;
+    bg.style.backgroundImage=`url(${bgImages[bgIndex]})`;
+    bg.classList.remove("fade");
+  },2000);
+},9000);
+
+/* stars */
 for(let i=0;i<80;i++){
   const s=document.createElement("div");
   s.className="star";
   s.style.left=Math.random()*100+"vw";
   s.style.top=Math.random()*100+"vh";
-  s.style.opacity=Math.random();
   document.body.appendChild(s);
 }
 setInterval(()=>{
-  const sh=document.createElement("div");
-  sh.className="shooting";
-  sh.style.top=Math.random()*40+"vh";
-  sh.style.left="110vw";
-  document.body.appendChild(sh);
-  setTimeout(()=>sh.remove(),2500);
+  for(let i=0;i<4;i++){
+    const sh=document.createElement("div");
+    sh.className="shooting";
+    sh.style.left=Math.random()*100+"vw";
+    sh.style.top=Math.random()*50+"vh";
+    document.body.appendChild(sh);
+    setTimeout(()=>sh.remove(),1500);
+  }
 },3000);
-</script>
 
-<!-- LOGIN -->
-<div class="login-layer" id="loginLayer">
-  <div class="login-box" id="loginBox">
-    <h1>Masuk dulu yyaa Adee ✨</h1>
-    <input type="password" id="pw" placeholder="Adeku Tersayang">
-    <br>
-    <button onclick="check()">Masuk 💫</button>
-    <div id="error"></div>
-  </div>
-</div>
-
-<!-- TRANSITION -->
-<div id="transition">
-  <div class="layer one"></div>
-  <div class="layer two"></div>
-</div>
-
-<!-- CONTENT -->
-<div id="content">
-  <div class="content-box">
-    <h1>Selamat datang di halaman khusus kamu 💖</h1>
-    <div class="text-box">
-      <p id="mainText"></p>
-    </div>
-    <div class="action" id="actions">
-      <button onclick="secret()">Pesan Rahasia 💌</button>
-      <button onclick="sorry()">Abang Mau Ngomong 🥺</button>
-    </div>
-  </div>
-</div>
-
-<!-- OVERLAY -->
-<div id="overlay">
-  <div class="overlay-box">
-    <p id="overlayText"></p>
-    <button onclick="closeOverlay()">Peluk dari Jauh 🤍</button>
-  </div>
-</div>
-
-<script>
-const PASSWORD="21052005";
+/* login */
 let tries=0;
+loginBtn.onclick=()=>{
+  if(pw.value===PASSWORD){
+    portal.style.opacity=1;
+    setTimeout(()=>{
+      loginBox.style.display="none";
+      content.style.display="block";
+      portal.style.opacity=0;
+      music.src="https://www.youtube.com/embed/7Zhc0eZ2hX8?autoplay=1";
+      typeText();
+    },1500);
+  }else{
+    tries++;
+    loginBox.classList.add("shake");
+    setTimeout(()=>loginBox.classList.remove("shake"),400);
+    errorMsg.innerText=tries>=3?"Clue: tanggal paling penting buat abang 😜":"hayooo masa tanggal lahir ade ngga inget hehe, coba lagi sayangku";
+  }
+};
 
-const mainText=`
-Hai Adee,
+/* text */
+const mainText=`Hai Adee,
 
 mungkin ini cuma website sederhana,
 tapi setiap barisnya abang bikin sambil mikirin adee sayang.
@@ -262,98 +250,61 @@ jadi alasan senyum abang,
 jadi tempat pulang,
 dan jadi orang yang selalu abang sayang dan abang cintai setiap hari.
 
-Abang sayang ade hari ini,
+Abang nggak janji sempurna,
+tapi abang janji selalu berusaha buat jadi yang terbaik untuk ade,
+dengerin ade,
+dukung ade,
+dan hidup bareng ade sejauh yang kita bisa.
+
+Ade itu berharga,
+ade itu istimewa,
+dan abang bersyukur bisa milikin ade sayang.
+
+abang sayang ade hari ini,
 besok,
-dan selamanya.
-`;
-
-const sorryText=`
-Ade sayang, abang minta maaf yaa,
-hari-hari ade jadi jelek karena abang,
-dan karena ego abang kita jadi renggang.
-
-Abang minta maaf atas semua yang pernah abang lakuin.
-Abang cuma mau ade tau,
-abang selalu cinta ade,
-kapanpun dan dimanapun.
-
-Maafin abang ya adee,
-abang mau ade kembali di sisi abang.
-`;
+seterusnya,
+dan selamanya.`;
 
 let i=0;
-
-function check(){
-  if(pw.value===PASSWORD){
-    document.getElementById("transition").style.display="block";
-    setTimeout(()=>{
-      loginLayer.style.display="none";
-      transition.style.display="none";
-      content.style.display="block";
-      type();
-    },1600);
-  }else{
-    tries++;
-    loginBox.classList.add("shake");
-    setTimeout(()=>loginBox.classList.remove("shake"),400);
-    error.innerText="hayooo masa tanggal lahir ade ngga inget hehe, coba lagi sayangku";
-    if(tries>=3){
-      error.innerText+="\n(clue: hari spesial kamu 🤭)";
-    }
-  }
-}
-
-function type(){
+function typeText(){
   if(i<mainText.length){
     mainTextEl.innerHTML+=mainText.charAt(i);
-    i++;setTimeout(type,30);
+    box.scrollTop=box.scrollHeight;
+    i++;setTimeout(typeText,28);
   }else{
-    setTimeout(()=>actions.style.display="block",500);
+    secretBtn.style.opacity=1;
+    sorryBtn.style.opacity=1;
   }
 }
 
-const mainTextEl=document.getElementById("mainText");
+/* overlay */
+const sorryText=`ade sayang,
+abang minta maaf yaa...
+abang sadar banyak salah,
+dan ego abang bikin ade sakit.
 
-function secret(){
-  openOverlay("Abang sayang Adee lebih dari apapun ❤️");
-}
+abang cuma mau ade tau,
+abang selalu mencintai ade,
+kapanpun dan dimanapun.
 
-function sorry(){
-  openOverlay(sorryText);
-  hearts();
-}
+maafin abang ya adee,
+abang mau ade kembali di sisi abang.`;
+
+secretBtn.onclick=()=>openOverlay("Abang sayang Adee selamanya ❤️");
+sorryBtn.onclick=()=>openOverlay(sorryText);
 
 function openOverlay(t){
   overlayText.innerText=t;
   overlay.style.display="flex";
 }
-
 function closeOverlay(){
   overlay.style.display="none";
-  hug();
-}
-
-function hearts(){
-  for(let i=0;i<60;i++){
-    const h=document.createElement("div");
-    h.className="heart";
-    h.innerText="❤️";
-    h.style.left=Math.random()*100+"vw";
-    h.style.fontSize=14+Math.random()*24+"px";
-    h.style.animationDuration=3+Math.random()*3+"s";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-  }
-}
-
-function hug(){
   const h=document.createElement("div");
   h.id="hug";
   h.innerText="🤍🤗🤍";
   document.body.appendChild(h);
-  setTimeout(()=>h.remove(),2400);
+  setTimeout(()=>h.remove(),2000);
 }
 </script>
-
 </body>
 </html>
